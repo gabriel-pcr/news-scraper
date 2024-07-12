@@ -1,5 +1,4 @@
 import logging
-import json
 from RPA.Robocorp.WorkItems import WorkItems
 
 
@@ -7,21 +6,25 @@ class InputProvider:
 
     def __init__(self, logger: logging.Logger) -> None:
         self.search_phrase = 'Nvidia'
-        self.topics = '["Business"]'
+        self.topics = ["Business"]
         self.number_of_months = 3
         self.logger = logger
         self._provide_inputs_from_work_items()
+        self._log_defined_variables()
+
+    def _log_defined_variables(self):
+        defined_variables = {
+            "search_phrase": self.search_phrase,
+            "topics": self.topics,
+            "number_of_months": self.number_of_months,
+        }
+        for key, value in defined_variables.items():
+            self.logger.info(f'Running with {key} value: {value}')
 
     def _provide_inputs_from_work_items(self):
         self.logger.info('Providing inputs from work items')
         work_items = WorkItems()
         work_items.get_input_work_item()
-        variables = work_items.get_work_item_variables()
-        payload = work_items.get_work_item_payload()
-        self.logger.info(f'Work item payload: {payload}')
-        for variable, value in variables.items():
-            self.logger.info("Work item variable: %s = %s", variable, value)
-
         self.search_phrase = work_items.get_work_item_variable(
             'SEARCH_PHRASE',
             self.search_phrase
@@ -30,12 +33,7 @@ class InputProvider:
             'NUMBER_OF_MONTHS',
             self.number_of_months
         )
-        try:
-            self.topics = json.loads(
-                work_items.get_work_item_variable(
-                    'TOPICS',
-                    self.topics
-                )
-            )
-        except json.JSONDecodeError:
-            self.logger.error('Defined topics are not JSON serializable')
+        self.topics = work_items.get_work_item_variable(
+            'TOPICS',
+            self.topics
+        )

@@ -25,4 +25,4 @@ The following work items and patterns are expected:
 
 - SEARCH_PHRASE: string to be searched, like 'Nvidia'
 - NUMBER_OF_MONTHS: integer amount of previous months to search: Ex: 3
-- TOPICS: JSON parseable list of topics to filter. Ex: '["Business"]'
+- TOPICS: list of topics to filter. Ex: ['Business']
