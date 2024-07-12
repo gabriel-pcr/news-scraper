@@ -23,6 +23,6 @@ Using [robocorp cloud](https://cloud.robocorp.com/) create an integration with
 Github and create the necessary work items to run the project.
 The following work items and patterns are expected:
 
-- SEARCH_PHRASE: string to be searched, like "Nvidia"
+- SEARCH_PHRASE: string to be searched, like 'Nvidia'
 - NUMBER_OF_MONTHS: integer amount of previous months to search: Ex: 3
 - TOPICS: JSON parseable list of topics to filter. Ex: '["Business"]'

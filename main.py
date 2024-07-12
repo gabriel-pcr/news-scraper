@@ -7,7 +7,7 @@ from src.setup.logger import LoggerSetup
 
 
 def main():
-    logger_setup = LoggerSetup(__name__, 'app.log', logging.INFO)
+    logger_setup = LoggerSetup(__name__, 'output/app.log', logging.INFO)
     logger = logger_setup.get_logger()
 
     input_provider = InputProvider(logger)

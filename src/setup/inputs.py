@@ -10,10 +10,9 @@ class InputProvider:
         self.topics = '["Business"]'
         self.number_of_months = 3
         self.logger = logger
+        self._provide_inputs_from_work_items()
 
-        self.provide_inputs_from_work_items()
-
-    def provide_inputs_from_work_items(self):
+    def _provide_inputs_from_work_items(self):
         self.logger.info('Providing inputs from work items')
         work_items = WorkItems()
         work_items.get_input_work_item()
