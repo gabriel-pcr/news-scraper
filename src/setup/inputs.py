@@ -16,6 +16,12 @@ class InputProvider:
         self.logger.info('Providing inputs from work items')
         work_items = WorkItems()
         work_items.get_input_work_item()
+        variables = work_items.get_work_item_variables()
+        payload = work_items.get_work_item_payload()
+        self.logger.info(f'Work item payload: {payload}')
+        for variable, value in variables.items():
+            self.logger.info("Work item variable: %s = %s", variable, value)
+
         self.search_phrase = work_items.get_work_item_variable(
             'SEARCH_PHRASE',
             self.search_phrase

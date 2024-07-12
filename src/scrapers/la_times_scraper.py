@@ -223,7 +223,7 @@ class LATimesScraper:
             response = requests.get(image_url)
             response.raise_for_status()
             ImageUtils.save_file_to_path(
-                'output/images',
+                'output',
                 response.content,
                 file_name
             )
